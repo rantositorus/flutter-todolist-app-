@@ -1,17 +1,13 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
-
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as datatTimePicker;
 import 'package:intl/intl.dart';
 
-///
 import '../../main.dart';
 import '../../models/task.dart';
 import '../../utils/colors.dart';
 import '../../utils/constanst.dart';
 import '../../utils/strings.dart';
 
-// ignore: must_be_immutable
 class TaskView extends StatefulWidget {
   TaskView({
     super.key,
@@ -34,7 +30,6 @@ class _TaskViewState extends State<TaskView> {
   DateTime? time;
   DateTime? date;
 
-  /// Show Selected Time As String Format
   String showTime(DateTime? time) {
     if (widget.task?.createdAtTime == null) {
       if (time == null) {
@@ -49,7 +44,6 @@ class _TaskViewState extends State<TaskView> {
     }
   }
 
-  /// Show Selected Time As DateTime Format
   DateTime showTimeAsDateTime(DateTime? time) {
     if (widget.task?.createdAtTime == null) {
       if (time == null) {
@@ -62,7 +56,6 @@ class _TaskViewState extends State<TaskView> {
     }
   }
 
-  /// Show Selected Date As String Format
   String showDate(DateTime? date) {
     if (widget.task?.createdAtDate == null) {
       if (date == null) {
@@ -75,7 +68,6 @@ class _TaskViewState extends State<TaskView> {
     }
   }
 
-  // Show Selected Date As DateTime Format
   DateTime showDateAsDateTime(DateTime? date) {
     if (widget.task?.createdAtDate == null) {
       if (date == null) {
@@ -88,7 +80,6 @@ class _TaskViewState extends State<TaskView> {
     }
   }
 
-  /// If any Task Already exist return TRUE otherWise FALSE
   bool isTaskAlreadyExistBool() {
     if (widget.taskControllerForTitle?.text == null &&
         widget.taskControllerForSubtitle?.text == null) {
@@ -98,16 +89,12 @@ class _TaskViewState extends State<TaskView> {
     }
   }
 
-  /// If any task already exist app will update it otherwise the app will add a new task
   dynamic isTaskAlreadyExistUpdateTask() {
     if (widget.taskControllerForTitle?.text != null &&
         widget.taskControllerForSubtitle?.text != null) {
       try {
         widget.taskControllerForTitle?.text = title;
         widget.taskControllerForSubtitle?.text = subtitle;
-
-        // widget.task?.createdAtDate = date!;
-        // widget.task?.createdAtTime = time!;
 
         widget.task?.save();
         Navigator.of(context).pop();
@@ -130,7 +117,6 @@ class _TaskViewState extends State<TaskView> {
     }
   }
 
-  /// Delete Selected Task
   dynamic deleteTask() {
     return widget.task?.delete();
   }
@@ -152,14 +138,11 @@ class _TaskViewState extends State<TaskView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  /// new / update Task Text
                   _buildTopText(textTheme),
 
-                  /// Middle Two TextFileds, Time And Date Selection Box
                   _buildMiddleTextFieldsANDTimeAndDateSelection(
                       context, textTheme),
 
-                  /// All Bottom Buttons
                   _buildBottomButtons(context),
                 ],
               ),

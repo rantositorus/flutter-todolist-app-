@@ -1,8 +1,3 @@
-//? CodeWithFlexz on Instagram
-
-//* AmirBayat0 on Github
-//! Programming with Flexz on Youtube
-
 import 'package:flutter/material.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
 
@@ -12,17 +7,12 @@ import '../models/task.dart';
 import '../view/home/home_view.dart';
 
 Future<void> main() async {
-  /// Initial Hive DB
   await Hive.initFlutter();
 
-  /// Register Hive Adapter
   Hive.registerAdapter<Task>(TaskAdapter());
 
-  /// Open box
   var box = await Hive.openBox<Task>("tasksBox");
 
-  /// Delete data from previous day
-  // ignore: avoid_function_literals_in_foreach_calls
   box.values.forEach((task) {
     if (task.createdAtTime.day != DateTime.now().day) {
       task.delete();
